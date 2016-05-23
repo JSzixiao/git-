@@ -90,4 +90,26 @@
 	* git fetch origin
 * We are using a git rebase workflow and the feature branch is ready to go into master. Let's rebase the feature branch onto our master branch.
 	* git rebase master feature
-* 
+* 将版本库未打包的松散对象打包，优化对象的存储
+	* git repack -d
+* 将某个commit信息从分支上选出来，合并到另一个分支上
+	* 查看分支上某个文件的log
+	* git log new-feature -p README.md
+	* 将某个commit信息合并到当前分支
+	* git cherry-pick ca32a6dac7b6f97975edbe19a4296c2ee7682f68
+* 文件内容搜索定位工具
+	* 查看TODO相关
+	* git grep "TODO"
+* 简化log信息
+	* git log --oneline
+* 修改后commit的commit
+	* git rebase -i HEAD~2
+	* r，表示：使用 commit，并且修改 commit message。
+	* s，意思是使用这个 commit，但将它合并到前一个 commit 中去。
+* 在 merge 特性分支时，把所有的新提交合并成一个
+	* git merge long-branch --squash
+	* git commit -m "merge long-branch"
+* 当提交顺序错乱时，使用 `git rebase -i` 进行调整
+	* git rebase -i HEAD~2
+* 跑自动化测试，找寻commit中提交的bug
+	* git bisect run make test
